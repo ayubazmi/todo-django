@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: django_app
+    command: ["gunicorn", "--bind", "0.0.0.0:8000", "todoApp.wsgi:application"]
+    volumes:
+      - .:/app
+      - sqlite_data:/app/db.sqlite3  # Persist SQLite database
+    ports:
+      - "8000:8000"
+
+volumes:
+  sqlite_data: {}
