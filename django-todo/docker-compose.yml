@@ -7,9 +7,10 @@ services:
     command: ["gunicorn", "--bind", "0.0.0.0:8000", "todoApp.wsgi:application"]
     volumes:
       - .:/app
-      - sqlite_data:/app/db.sqlite3  # Persist SQLite database
+      - sqlite_data:/app/db  # Persist SQLite database
     ports:
       - "8000:8000"
 
 volumes:
-  sqlite_data: {}
+  sqlite_data:
+    driver: local
