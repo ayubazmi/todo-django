@@ -14,4 +14,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
 # Run Django server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "todoApp.wsgi:application"]
+CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 todoApp.wsgi:application"]
+
+
